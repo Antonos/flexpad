@@ -1,2 +1,3 @@
-=FlexPad components=
+#labels Featured
+=Components=
 <wiki:gadget url="http://flexpad.go4flash.com/gadget.xml" width="770" height="400" />
