@@ -22,10 +22,13 @@
                 super.data = value;
                 if (value)
                 {
+					trace(data);
                     if (data.hasOwnProperty(iconField))
                         icon = data[iconField];
                     if (data.hasOwnProperty(iconField))
                         iconSelected = data[iconSelectedField];
+					
+					trace(iconField,data[iconField]);
                 }
 
             }
