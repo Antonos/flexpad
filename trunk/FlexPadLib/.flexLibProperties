@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" version="3">
+  <includeClasses/>
+  <includeResources>
+    <resourceEntry destPath="HelveticaNeue Light.ttf" sourcePath="HelveticaNeue Light.ttf"/>
+    <resourceEntry destPath="search.png" sourcePath="search.png"/>
+    <resourceEntry destPath="HelveticaNeue Bold.ttf" sourcePath="HelveticaNeue Bold.ttf"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="Helvetica Bold.ttf" sourcePath="Helvetica Bold.ttf"/>
+  </includeResources>
+  <namespaceManifests/>
+</flexLibProperties>

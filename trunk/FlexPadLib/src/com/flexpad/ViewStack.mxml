@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group 
+    creationComplete="creationCompleteHandler(event)"
+    currentStateChange="group1_currentStateChangeHandler(event)"
+    resize="resizeHandler(event)"
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx"
+    clipAndEnableScrolling="true">
+    <fx:Script>
+        <![CDATA[
+            import mx.core.IVisualElement;
+            import mx.core.mx_internal;
+            import mx.events.FlexEvent;
+            import mx.events.ResizeEvent;
+            import mx.events.StateChangeEvent;
+            import mx.states.State;
+
+            private var statesList:Array;
+
+            private var elementsList:Array = [];
+
+            protected function creationCompleteHandler(event:FlexEvent):void
+            {
+                var _states:Array = [];
+                statesList = [];
+                for (var i:uint = 0; i < elementsList.length; i++)
+                {
+                    _states.push(new State({ name: "state" + i }));
+                    statesList.push(_states[i].name);
+                }
+                states = _states;
+
+                currentState = "state0";
+            }
+
+            override public function set mxmlContent(value:Array):void
+            {
+                elementsList = value;
+            }
+
+            private var _selectedIndex:int = -1;
+
+            public function set selectedIndex(_index:int):void
+            {
+                _selectedIndex = _index;
+                if (states && states.length > 0)
+                {
+                    currentState = "state" + _selectedIndex;
+                }
+            }
+
+            public function get selectedIndex():int
+            {
+                return _selectedIndex;
+            }
+
+            protected function group1_currentStateChangeHandler(event:StateChangeEvent):void
+            {
+                var oldStateIndex:int = statesList.indexOf(event.oldState);
+                var newStateIndex:int = statesList.indexOf(event.newState);
+
+                if (elementsList[newStateIndex].parent != this)
+                {
+                    addElement(elementsList[newStateIndex]);
+                }
+
+                if (oldStateIndex < newStateIndex)
+                {
+                    if (oldStateIndex >= 0)
+                    {
+                        rtlHideEffect.play([ elementsList[oldStateIndex]]);
+                        rtlShowEffect.play([ elementsList[newStateIndex]])
+                    }
+                }
+                else
+                {
+                    ltrHideEffect.play([ elementsList[oldStateIndex]]);
+                    ltrShowEffect.play([ elementsList[newStateIndex]]);
+                }
+            }
+
+            protected function resizeHandler(event:ResizeEvent):void
+            {
+                if (currentState != null)
+                {
+                    var currentStateIndex:int = statesList.indexOf(currentState);
+                    for (var i:uint = 0; i < elementsList.length; i++)
+                    {
+                        if (i != currentStateIndex)
+                        {
+                            elementsList[i].x = this.width;
+                        }
+                    }
+                }
+            }
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <s:Move id="ltrShowEffect"
+            xFrom="{-this.width}"
+            xTo="0"/>
+        <s:Move id="ltrHideEffect"
+            xFrom="0"
+            xTo="{this.width}"/>
+        <s:Move id="rtlShowEffect"
+            xFrom="{this.width}"
+            xTo="0"/>
+        <s:Move id="rtlHideEffect"
+            xFrom="0"
+            xTo="{-this.width}"/>
+    </fx:Declarations>
+</s:Group>
