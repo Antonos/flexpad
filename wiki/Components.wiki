@@ -1,3 +1,3 @@
 #labels Featured
 =Components preview=
-<wiki:gadget url="http://flexpad.go4flash.com/gadget.xml" width="770" height="400" />
+<wiki:gadget url="http://flexpad.go4flash.com/gadget.xml" width="770" height="450" />
