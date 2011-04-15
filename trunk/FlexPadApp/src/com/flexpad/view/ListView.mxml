@@ -8,6 +8,21 @@
         <s:VerticalLayout/>
     </view:layout>
 
-    <flexpad:ButtonLabel text="Comming soon"/>
+    <flexpad:List 
+        backgroundAlpha="1"
+        backgroundColor="0xdfe2e7" width="300">
+        <s:ArrayCollection>
+            <fx:String>Label One</fx:String>
+            <fx:String>Label Two</fx:String>
+            <fx:String>Label Three</fx:String>
+            <fx:String>Label Four</fx:String>
+            <fx:String>Label Five</fx:String>
+            <fx:String>Label Six</fx:String>
+            <fx:String>Label Seven</fx:String>
+            <fx:String>Label Eight</fx:String>
+            <fx:String>Label Nine</fx:String>
+            <fx:String>Label Ten</fx:String>
+        </s:ArrayCollection>
+    </flexpad:List>
 
 </view:FlexpadView>
