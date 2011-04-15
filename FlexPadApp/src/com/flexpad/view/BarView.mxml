@@ -84,9 +84,9 @@
     <flexpad:LargeButtonBarGrey requireSelection="true">
         <flexpad:dataProvider>
             <s:ArrayCollection>
-                <fx:String>Search</fx:String>
-                <fx:String>Middle</fx:String>
-                <fx:String>Directions</fx:String>
+                <fx:String>Label One</fx:String>
+                <fx:String>Label Two</fx:String>
+                <fx:String>Label Three</fx:String>
             </s:ArrayCollection>
         </flexpad:dataProvider>
     </flexpad:LargeButtonBarGrey>

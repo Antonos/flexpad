@@ -29,7 +29,7 @@
                 verticalAlign="middle"/>
         </flexpad:layout>
         <flexpad:ButtonBarGrey id="viewSwitcher"
-            selectedIndex="0"
+            selectedIndex="3"
             requireSelection="true">
             <flexpad:dataProvider>
                 <s:ArrayCollection>
