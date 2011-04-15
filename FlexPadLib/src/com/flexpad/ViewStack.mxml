@@ -30,8 +30,12 @@
                     statesList.push(_states[i].name);
                 }
                 states = _states;
+				
+				if(_selectedIndex>=0){
+					currentState = "state"+_selectedIndex;
+				}
 
-                currentState = "state0";
+                
             }
 
             override public function set mxmlContent(value:Array):void
