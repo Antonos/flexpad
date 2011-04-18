@@ -22,6 +22,7 @@
 -->
 <s:SparkSkin 
     width="94" height="27"
+    creationComplete="sparkskin1_creationCompleteHandler(event)"
     xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
@@ -38,10 +39,13 @@
 
     <fx:Script>
         <![CDATA[
+            import mx.binding.utils.ChangeWatcher;
+            import mx.events.FlexEvent;
+
             /**
              * @private
              */
-            private static const focusExclusions:Array = [ "labelDisplay" ];
+            private static const focusExclusions:Array = [ "offLabel", "onLabel" ];
 
             /**
              * @private
@@ -50,7 +54,31 @@
             {
                 return focusExclusions;
             }
-            ;
+
+
+            protected function sparkskin1_creationCompleteHandler(event:FlexEvent):void
+            {
+                ChangeWatcher.watch(hostComponent, "selected", selectedChangeHandler);
+                if (hostComponent.selected)
+                {
+                    overGrp.x = openMoveEff.xTo;
+                    offBg.width = openResizeBgEff.widthTo;
+					onLabel.alpha = openFadeOnLblEff.alphaTo;
+					offLabel.alpha = openFadeOffLblEff.alphaTo;
+                }
+            }
+
+            private function selectedChangeHandler(event:Event):void
+            {
+                if (hostComponent.selected)
+                {
+                    openEff.play();
+                }
+                else
+                {
+                    closeEff.play();
+                }
+            }
         ]]>
     </fx:Script>
 
@@ -72,31 +100,46 @@
             stateGroups="disabledStates, selectedStates"/>
     </s:states>
 
-    <!-- layer 1: fill -->
+    <fx:Declarations>
+        <s:Parallel id="openEff">
+            <s:Move id="openMoveEff"
+                target="{overGrp}"
+                xFrom="0"
+                xTo="{width-overGrp.width}"/>
+            <s:Resize id="openResizeBgEff"
+                target="{offBg}"
+                widthFrom="{width-36}"
+                widthTo="{40}"/>
+			<s:Fade id="openFadeOnLblEff"
+					target="{onLabel}"
+					alphaFrom="0"
+					alphaTo="1"/>
+            <s:Fade id="openFadeOffLblEff"
+                target="{offLabel}"
+                alphaFrom="1"
+                alphaTo="0"/>
+        </s:Parallel>
+        <s:Parallel id="closeEff">
+            <s:Move target="{overGrp}"
+                xFrom="{width-overGrp.width}"
+                xTo="0"/>
+            <s:Resize target="{offBg}"
+                widthFrom="{40}"
+                widthTo="{width-36}"/>
+			<s:Fade target="{onLabel}"
+					alphaFrom="1"
+					alphaTo="0"/>
+            <s:Fade target="{offLabel}"
+                alphaFrom="0"
+                alphaTo="1"/>
+        </s:Parallel>
+    </fx:Declarations>
+
     <s:Rect 
         left="1" right="1" top="1" bottom="1"
         radiusX="4"
         radiusY="4">
         <s:fill>
-            <s:LinearGradient rotation="-90">
-                <s:GradientEntry 
-                    color="0xfefefe"
-                    ratio="0"/>
-                <s:GradientEntry 
-                    color="0xfafafa"
-                    ratio="0.51"/>
-                <s:GradientEntry 
-                    color="0xefefef"
-                    ratio="0.54"/>
-                <s:GradientEntry 
-                    color="0xdddddd"
-                    ratio="0.87"/>
-                <s:GradientEntry 
-                    color="0xb5b5b5"
-                    ratio="1"/>
-            </s:LinearGradient>
-        </s:fill>
-        <s:fill.selectedStates>
             <s:LinearGradient rotation="-90">
                 <s:GradientEntry 
                     color="0x76adfc"
@@ -111,25 +154,13 @@
                     color="0x295ab2"
                     ratio="1"/>
             </s:LinearGradient>
-        </s:fill.selectedStates>
+        </s:fill>
     </s:Rect>
-
-    <!-- layer 2: border -->
     <s:Rect 
         left="0" right="0" top="0" bottom="0"
         radiusX="4"
         radiusY="4">
         <s:stroke>
-            <s:LinearGradientStroke rotation="-90">
-                <s:GradientEntry 
-                    color="0xbfbfbf"
-                    ratio="0"/>
-                <s:GradientEntry 
-                    color="0x7d7d7d"
-                    ratio="1"/>
-            </s:LinearGradientStroke>
-        </s:stroke>
-        <s:stroke.selectedStates>
             <s:LinearGradientStroke rotation="-90">
                 <s:GradientEntry 
                     color="0x538ad8"
@@ -138,13 +169,87 @@
                     color="0x093889"
                     ratio="1"/>
             </s:LinearGradientStroke>
-        </s:stroke.selectedStates>
+        </s:stroke>
     </s:Rect>
 
-    <!-- layer 3: over -->
+    <s:Group id="offBg"
+        width="{width-36}" height="100%"
+        right="0">
 
-    <s:Group 
-        width="100%" height="100%">
+        <!-- layer 1: fill -->
+        <s:Rect 
+            left="1" right="1" top="1" bottom="1"
+            radiusX="4"
+            radiusY="4">
+            <s:fill>
+                <s:LinearGradient rotation="-90">
+                    <s:GradientEntry 
+                        color="0xfefefe"
+                        ratio="0"/>
+                    <s:GradientEntry 
+                        color="0xfafafa"
+                        ratio="0.51"/>
+                    <s:GradientEntry 
+                        color="0xefefef"
+                        ratio="0.54"/>
+                    <s:GradientEntry 
+                        color="0xdddddd"
+                        ratio="0.87"/>
+                    <s:GradientEntry 
+                        color="0xb5b5b5"
+                        ratio="1"/>
+                </s:LinearGradient>
+            </s:fill>
+        </s:Rect>
+
+        <!-- layer 2: border -->
+        <s:Rect 
+            left="0" right="0" top="0" bottom="0"
+            radiusX="4"
+            radiusY="4">
+            <s:stroke>
+                <s:LinearGradientStroke rotation="-90">
+                    <s:GradientEntry 
+                        color="0xbfbfbf"
+                        ratio="0"/>
+                    <s:GradientEntry 
+                        color="0x7d7d7d"
+                        ratio="1"/>
+                </s:LinearGradientStroke>
+            </s:stroke>
+        </s:Rect>
+    </s:Group>
+
+    <!-- layer 3: label -->
+
+    <s:Label id="offLabel"
+        left="40" right="0"
+        color="0x8b8b8b"
+        textAlign="center"
+        verticalCenter="0"
+        text="OFF"/>
+
+    <s:Label id="onLabel"
+        left="0" right="40"
+        color="0xFFFFFF"
+        textAlign="center"
+        verticalCenter="0"
+        text="ON">
+        <s:filters>
+            <s:DropShadowFilter 
+                color="0"
+                distance="1"
+                angle="-90"
+                alpha="0.65"
+                blurX="0"
+                blurY="0"/>
+        </s:filters>
+    </s:Label>
+
+    <!-- layer 4: over -->
+
+    <s:Group id="overGrp"
+        width="40" height="100%">
 
         <s:filters>
             <s:DropShadowFilter 
@@ -157,68 +262,27 @@
 
         <!-- over fill -->
         <s:Rect 
-            left="1" right="55" top="1" bottom="1"
-            rotation="-90"
-            excludeFrom="selectedStates"
+            width="100%"
+            left="0" right="0" top="0" bottom="0"
             radiusX="4"
             radiusY="4">
             <s:fill>
-                <s:LinearGradient>
-                    <s:GradientEntry 
-                        color="0xfcfcfc"
-                        ratio="0"/>
-                    <s:GradientEntry 
-                        color="0xd6d6d6"
-                        ratio="1"/>
-                </s:LinearGradient>
-            </s:fill>
-        </s:Rect>
-
-        <s:Rect 
-            left="55" right="1" top="1" bottom="1"
-            rotation="-90"
-            includeIn="selectedStates"
-            radiusX="4"
-            radiusY="4">
-            <s:fill>
-                <s:LinearGradient>
-                    <s:GradientEntry 
-                        color="0xfcfcfc"
-                        ratio="0"/>
-                    <s:GradientEntry 
-                        color="0xd6d6d6"
-                        ratio="1"/>
+                <s:LinearGradient rotation="-90">
+                    <s:GradientEntry color="0xfcfcfc"/>
+                    <s:GradientEntry color="0xd6d6d6"/>
                 </s:LinearGradient>
             </s:fill>
         </s:Rect>
 
         <!-- over border -->
         <s:Rect 
-            left="0" right="54" top="0" bottom="0"
-            rotation="-90"
-            excludeFrom="selectedStates"
+            width="100%"
+            left="0" right="0" top="0" bottom="0"
             radiusX="4"
             radiusY="4">
             <s:stroke>
-                <s:LinearGradientStroke>
-                    <s:GradientEntry 
-                        color="0x999999"
-                        ratio="0"/>
-                    <s:GradientEntry 
-                        color="0x919191"
-                        ratio="1"/>
-                </s:LinearGradientStroke>
-            </s:stroke>
-        </s:Rect>
-
-        <s:Rect 
-            left="54" right="0" top="0" bottom="0"
-            rotation="-90"
-            includeIn="selectedStates"
-            radiusX="4"
-            radiusY="4">
-            <s:stroke>
-                <s:LinearGradientStroke>
+                <s:LinearGradientStroke rotation="-90"
+                    weight="1">
                     <s:GradientEntry 
                         color="0x999999"
                         ratio="0"/>
@@ -229,31 +293,5 @@
             </s:stroke>
         </s:Rect>
     </s:Group>
-
-    <s:Label 
-        left="40" right="0"
-        color="0x8b8b8b"
-        textAlign="center"
-        verticalCenter="0"
-        text="OFF"
-        excludeFrom="selectedStates"/>
-
-    <s:Label 
-        left="0" right="40"
-        color="0xFFFFFF"
-        textAlign="center"
-        verticalCenter="0"
-        text="ON"
-        includeIn="selectedStates">
-        <s:filters>
-            <s:DropShadowFilter 
-                color="0"
-                distance="1"
-                angle="-90"
-                alpha="0.65"
-                blurX="0"
-                blurY="0"/>
-        </s:filters>
-    </s:Label>
 
 </s:SparkSkin>
