@@ -12,13 +12,13 @@
         backgroundAlpha="1"
         backgroundColor="0xdfe2e7" width="300">
         <s:ArrayCollection>
-            <fx:String>Label One</fx:String>
-            <fx:String>Label Two</fx:String>
-            <fx:String>Label Three</fx:String>
-            <fx:String>Label Four</fx:String>
-            <fx:String>Label Five</fx:String>
-            <fx:String>Label Six</fx:String>
-            <fx:String>Label Seven</fx:String>
+            <fx:Object label="Label One" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+			<fx:Object label="Label Two" icon="@Embed(source='/asset/icon/sampleIcon.png')" hint="Two"></fx:Object>
+			<fx:Object label="Label Three" icon="@Embed(source='/asset/icon/sampleIcon.png')" hint="Three"></fx:Object>
+			<fx:Object label="Label Four" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+			<fx:Object label="Label Five" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+			<fx:Object label="Label Six" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+			<fx:Object label="Label Seven" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
         </s:ArrayCollection>
     </flexpad:List>
 
