@@ -10,9 +10,10 @@
 
     <fx:Script>
         <![CDATA[
-			import mx.core.mx_internal;
-			
-			use namespace mx_internal;
+			[Bindable]
+			public var hintField:String;
+			[Bindable]
+			public var iconField:String;
 			
             [Bindable]
             override public function get selected():Boolean
@@ -25,6 +26,25 @@
                 super.selected = value;
             }
 			
+			override public function get data():Object
+			{
+				return super.data;
+			}
+			
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+				
+				if(data){
+					if(hintField){
+						hintLabelHolder.text = data[hintField];
+					}
+					if(iconField){
+						iconHolder.source = data[iconField];
+					}
+					
+				}
+			}
 			
         ]]>
     </fx:Script>
@@ -56,11 +76,16 @@
 		</s:fill.selectedStates>
 	</s:Rect>
 
+	<s:BitmapImage id="iconHolder" smooth="true" scaleMode="letterbox" left="7" top="7" bottom="7" />
 
     <flexpad:ListItemRendererLabel 
-        left="10" right="10" top="15" bottom="15"
+        left="{iconHolder.source?17+iconHolder.width:10}" right="10" top="15" bottom="15"
         currentState="{selected?'selected':'normal'}"
-        text="{data}"/>
+        text="{label}"/>
+	
+	<flexpad:ListItemRendererHintLabel id="hintLabelHolder" 
+		right="10" top="15" bottom="15"
+		currentState="{selected?'selected':'normal'}"/>
 
     <s:Rect 
         height="1"

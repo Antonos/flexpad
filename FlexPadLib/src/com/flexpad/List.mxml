@@ -6,5 +6,14 @@
 	<fx:Metadata> 
 		[Style(name="backgroundColor",type="uint",format="Color")] 
 		[Style(name="backgroundAlpha",type="Number", minValue="0.0", maxValue="1.0")]
-	</fx:Metadata> 
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			public var hintField:String = "hint";
+			
+			[Bindable]
+			public var iconField:String = "icon";
+		]]>
+	</fx:Script>
 </s:List>

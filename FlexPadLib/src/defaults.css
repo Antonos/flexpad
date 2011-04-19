@@ -169,3 +169,13 @@ flexpad|RadioButton{
 .listItemRendererLabel:selected{
 	color: #FFFFFF;
 }
+.listItemRendererHintLabel{
+	font-family: HelveticaNeue;
+	font-size: 17px;
+}
+.listItemRendererHintLabel:normal{
+	color: #395587;
+}
+.listItemRendererHintLabel:selected{
+	color: #FFFFFF;
+}

@@ -42,6 +42,21 @@
         <s:State name="normal"/>
         <s:State name="disabled"/>
     </s:states>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.flexpad.ListItemRenderer;
+			
+			private function listItemRenderer(obj:Object):ClassFactory
+			{
+				var _ir:ClassFactory = new ClassFactory();
+				_ir.generator = ListItemRenderer;
+				_ir.properties = {	hintField:hostComponent.hintField,
+									iconField:hostComponent.iconField};
+				return _ir;
+			}
+		]]>
+	</fx:Script>
 
     <fx:Declarations>
         <!---
@@ -97,7 +112,7 @@
         hasFocusableChildren="false">
         <!--- @copy spark.components.SkinnableDataContainer#dataGroup -->
         <s:DataGroup id="dataGroup"
-            itemRenderer="com.flexpad.ListItemRenderer">
+			itemRendererFunction="{listItemRenderer}">
             <s:layout>
                 <!--- The default layout is vertical and measures at least for 5 rows.
                 When switching to a different layout, HorizontalLayout for example,
