@@ -26,7 +26,8 @@
     xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-    alpha.disabledStates="0.5">
+    alpha.disabledStates="0.5"
+	clipAndEnableScrolling="true">
 
     <fx:Metadata>
         <![CDATA[ 
@@ -63,8 +64,8 @@
                 {
                     overGrp.x = openMoveEff.xTo;
                     offBg.width = openResizeBgEff.widthTo;
-					onLabel.alpha = openFadeOnLblEff.alphaTo;
-					offLabel.alpha = openFadeOffLblEff.alphaTo;
+					onLabel.x = openOnLblEff.xTo;
+					offLabel.x = openOffLblEff.xTo;
                 }
             }
 
@@ -108,16 +109,16 @@
                 xTo="{width-overGrp.width}"/>
             <s:Resize id="openResizeBgEff"
                 target="{offBg}"
-                widthFrom="{width-36}"
+                widthFrom="{width-34}"
                 widthTo="{40}"/>
-			<s:Fade id="openFadeOnLblEff"
+			<s:Move id="openOnLblEff"
 					target="{onLabel}"
-					alphaFrom="0"
-					alphaTo="1"/>
-            <s:Fade id="openFadeOffLblEff"
+					xFrom="{-onLabel.width}"
+					xTo="0"/>
+            <s:Move id="openOffLblEff"
                 target="{offLabel}"
-                alphaFrom="1"
-                alphaTo="0"/>
+                xFrom="{40}"
+                xTo="{width}"/>
         </s:Parallel>
         <s:Parallel id="closeEff">
             <s:Move target="{overGrp}"
@@ -125,13 +126,13 @@
                 xTo="0"/>
             <s:Resize target="{offBg}"
                 widthFrom="{40}"
-                widthTo="{width-36}"/>
-			<s:Fade target="{onLabel}"
-					alphaFrom="1"
-					alphaTo="0"/>
-            <s:Fade target="{offLabel}"
-                alphaFrom="0"
-                alphaTo="1"/>
+                widthTo="{width-34}"/>
+			<s:Move target="{onLabel}"
+					xFrom="0"
+					xTo="{-onLabel.width}"/>
+            <s:Move target="{offLabel}"
+					xFrom="{width}"
+					xTo="{40}"/>
         </s:Parallel>
     </fx:Declarations>
 
@@ -173,7 +174,7 @@
     </s:Rect>
 
     <s:Group id="offBg"
-        width="{width-36}" height="100%"
+        width="{width-34}" height="100%"
         right="0">
 
         <!-- layer 1: fill -->
@@ -223,14 +224,16 @@
     <!-- layer 3: label -->
 
     <s:Label id="offLabel"
-        left="40" right="0"
+        x="40"
+		width="{width-40}"
         color="0x8b8b8b"
         textAlign="center"
         verticalCenter="0"
         text="OFF"/>
 
     <s:Label id="onLabel"
-        left="0" right="40"
+        x="0"
+		width="{width-40}"
         color="0xFFFFFF"
         textAlign="center"
         verticalCenter="0"

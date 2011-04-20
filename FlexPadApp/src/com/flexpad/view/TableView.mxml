@@ -3,11 +3,48 @@
     xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:flexpad="com.flexpad.*"
-    xmlns:view="com.flexpad.view.*">
+    xmlns:view="com.flexpad.view.*" xmlns:path="com.flexpad.path.*">
     <view:layout>
         <s:VerticalLayout/>
     </view:layout>
-
-    <flexpad:ButtonLabel text="Comming soon"/>
+	
+	<s:BorderContainer backgroundColor="0xdfe2e7" borderVisible="false" width="440">
+		<flexpad:Table width="400" left="20" top="20" bottom="20" >
+			<flexpad:TableRow>
+				<s:HGroup width="100%">
+					<s:Label 
+						styleName="listItemRendererLabel"
+						text="Label One"/>
+					<s:Spacer width="100%" />
+					<flexpad:Switch />
+				</s:HGroup>
+			</flexpad:TableRow>
+			<flexpad:TableRow>
+				<s:HGroup width="100%">
+					<s:Label 
+						styleName="listItemRendererLabel"
+						text="Label Two"/>
+					<s:Spacer width="100%" />
+					<s:HGroup verticalAlign="middle">
+						<flexpad:ListItemRendererHintLabel text="Two" />
+						<path:ArrowPath>
+							<path:fill>
+								<s:SolidColor color="0x919191" />
+							</path:fill>
+						</path:ArrowPath>
+					</s:HGroup>
+				</s:HGroup>
+			</flexpad:TableRow>
+			<flexpad:TableRow>
+				<s:HGroup width="100%">
+					<s:Label 
+						styleName="listItemRendererLabel"
+						text="Label Three"/>
+					<s:Spacer width="100%" />
+					<flexpad:ArrowButton />
+				</s:HGroup>
+			</flexpad:TableRow>
+		</flexpad:Table>
+	</s:BorderContainer>
 
 </view:FlexpadView>
