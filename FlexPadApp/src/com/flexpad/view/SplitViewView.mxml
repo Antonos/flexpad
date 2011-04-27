@@ -8,6 +8,21 @@
         <s:VerticalLayout/>
     </view:layout>
 
-    <flexpad:ButtonLabel text="Comming soon"/>
+    <flexpad:SplitView>
+		<flexpad:List width="300" height="100%" backgroundAlpha="0">
+			<s:ArrayCollection>
+				<fx:Object label="Label One" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+				<fx:Object label="Label Two" icon="@Embed(source='/asset/icon/sampleIcon.png')" hint="Two"></fx:Object>
+				<fx:Object label="Label Three" icon="@Embed(source='/asset/icon/sampleIcon.png')" hint="Three"></fx:Object>
+				<fx:Object label="Label Four" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+				<fx:Object label="Label Five" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+				<fx:Object label="Label Six" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+				<fx:Object label="Label Seven" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
+			</s:ArrayCollection>
+		</flexpad:List>
+		<flexpad:ViewStack width="100%" height="100%">
+			
+		</flexpad:ViewStack>
+	</flexpad:SplitView>
 
 </view:FlexpadView>
