@@ -27,7 +27,7 @@
     xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
     alpha.disabledStates="0.5"
-	clipAndEnableScrolling="true">
+    clipAndEnableScrolling="true">
 
     <fx:Metadata>
         <![CDATA[ 
@@ -62,10 +62,7 @@
                 ChangeWatcher.watch(hostComponent, "selected", selectedChangeHandler);
                 if (hostComponent.selected)
                 {
-                    overGrp.x = openMoveEff.xTo;
-                    offBg.width = openResizeBgEff.widthTo;
-					onLabel.x = openOnLblEff.xTo;
-					offLabel.x = openOffLblEff.xTo;
+                    contentGroup.x = openMoveEff.xTo;
                 }
             }
 
@@ -104,80 +101,32 @@
     <fx:Declarations>
         <s:Parallel id="openEff">
             <s:Move id="openMoveEff"
-                target="{overGrp}"
-                xFrom="0"
-                xTo="{width-overGrp.width}"/>
-            <s:Resize id="openResizeBgEff"
-                target="{offBg}"
-                widthFrom="{width-34}"
-                widthTo="{40}"/>
-			<s:Move id="openOnLblEff"
-					target="{onLabel}"
-					xFrom="{-onLabel.width}"
-					xTo="0"/>
-            <s:Move id="openOffLblEff"
-                target="{offLabel}"
-                xFrom="{40}"
-                xTo="{width}"/>
+                target="{contentGroup}"
+                xFrom="{40-width}"
+                xTo="0"/>
         </s:Parallel>
         <s:Parallel id="closeEff">
-            <s:Move target="{overGrp}"
-                xFrom="{width-overGrp.width}"
-                xTo="0"/>
-            <s:Resize target="{offBg}"
-                widthFrom="{40}"
-                widthTo="{width-34}"/>
-			<s:Move target="{onLabel}"
-					xFrom="0"
-					xTo="{-onLabel.width}"/>
-            <s:Move target="{offLabel}"
-					xFrom="{width}"
-					xTo="{40}"/>
+            <s:Move target="{contentGroup}"
+                xFrom="0"
+                xTo="{40-width}"/>
         </s:Parallel>
     </fx:Declarations>
 
-    <s:Rect 
-        left="1" right="1" top="1" bottom="1"
-        radiusX="4"
-        radiusY="4">
-        <s:fill>
-            <s:LinearGradient rotation="-90">
-                <s:GradientEntry 
-                    color="0x76adfc"
-                    ratio="0"/>
-                <s:GradientEntry 
-                    color="0x5292f1"
-                    ratio="0.44"/>
-                <s:GradientEntry 
-                    color="0x4085ec"
-                    ratio="0.54"/>
-                <s:GradientEntry 
-                    color="0x295ab2"
-                    ratio="1"/>
-            </s:LinearGradient>
-        </s:fill>
-    </s:Rect>
-    <s:Rect 
-        left="0" right="0" top="0" bottom="0"
-        radiusX="4"
-        radiusY="4">
-        <s:stroke>
-            <s:LinearGradientStroke rotation="-90">
-                <s:GradientEntry 
-                    color="0x538ad8"
-                    ratio="0"/>
-                <s:GradientEntry 
-                    color="0x093889"
-                    ratio="1"/>
-            </s:LinearGradientStroke>
-        </s:stroke>
-    </s:Rect>
+    <s:Group id="maskRect"
+        left="0" right="0" top="0" bottom="0">
+        <s:Rect 
+            left="0" right="0" top="0" bottom="0"
+            radiusX="4"
+            radiusY="4">
+            <s:fill>
+                <s:SolidColor alpha="0.5"/>
+            </s:fill>
+        </s:Rect>
+    </s:Group>
 
-    <s:Group id="offBg"
-        width="{width-34}" height="100%"
-        right="0">
-
-        <!-- layer 1: fill -->
+    <s:Group id="contentGroup"
+        x="{40-width}" width="{2*width-40}" height="100%"
+        mask="{maskRect}">
         <s:Rect 
             left="1" right="1" top="1" bottom="1"
             radiusX="4"
@@ -185,25 +134,20 @@
             <s:fill>
                 <s:LinearGradient rotation="-90">
                     <s:GradientEntry 
-                        color="0xfefefe"
+                        color="0x76adfc"
                         ratio="0"/>
                     <s:GradientEntry 
-                        color="0xfafafa"
-                        ratio="0.51"/>
+                        color="0x5292f1"
+                        ratio="0.44"/>
                     <s:GradientEntry 
-                        color="0xefefef"
+                        color="0x4085ec"
                         ratio="0.54"/>
                     <s:GradientEntry 
-                        color="0xdddddd"
-                        ratio="0.87"/>
-                    <s:GradientEntry 
-                        color="0xb5b5b5"
+                        color="0x295ab2"
                         ratio="1"/>
                 </s:LinearGradient>
             </s:fill>
         </s:Rect>
-
-        <!-- layer 2: border -->
         <s:Rect 
             left="0" right="0" top="0" bottom="0"
             radiusX="4"
@@ -211,90 +155,135 @@
             <s:stroke>
                 <s:LinearGradientStroke rotation="-90">
                     <s:GradientEntry 
-                        color="0xbfbfbf"
+                        color="0x538ad8"
                         ratio="0"/>
                     <s:GradientEntry 
-                        color="0x7d7d7d"
+                        color="0x093889"
                         ratio="1"/>
                 </s:LinearGradientStroke>
             </s:stroke>
         </s:Rect>
+
+        <s:Group id="offBg"
+            x="{width-6}" width="{width-34}" height="100%">
+
+            <!-- layer 1: fill -->
+            <s:Rect 
+                left="1" right="1" top="1" bottom="1"
+                radiusX="4"
+                radiusY="4">
+                <s:fill>
+                    <s:LinearGradient rotation="-90">
+                        <s:GradientEntry 
+                            color="0xfefefe"
+                            ratio="0"/>
+                        <s:GradientEntry 
+                            color="0xfafafa"
+                            ratio="0.51"/>
+                        <s:GradientEntry 
+                            color="0xefefef"
+                            ratio="0.54"/>
+                        <s:GradientEntry 
+                            color="0xdddddd"
+                            ratio="0.87"/>
+                        <s:GradientEntry 
+                            color="0xb5b5b5"
+                            ratio="1"/>
+                    </s:LinearGradient>
+                </s:fill>
+            </s:Rect>
+
+            <!-- layer 2: border -->
+            <s:Rect 
+                left="0" right="0" top="0" bottom="0"
+                radiusX="4"
+                radiusY="4">
+                <s:stroke>
+                    <s:LinearGradientStroke rotation="-90">
+                        <s:GradientEntry 
+                            color="0xbfbfbf"
+                            ratio="0"/>
+                        <s:GradientEntry 
+                            color="0x7d7d7d"
+                            ratio="1"/>
+                    </s:LinearGradientStroke>
+                </s:stroke>
+            </s:Rect>
+        </s:Group>
+
+        <!-- layer 3: label -->
+
+        <s:Label id="offLabel"
+            x="{width}" width="{width-40}"
+            color="0x8b8b8b"
+            textAlign="center"
+            verticalCenter="0"
+            text="OFF"/>
+
+        <s:Label id="onLabel"
+            x="0" width="{width-40}"
+            color="0xFFFFFF"
+            textAlign="center"
+            verticalCenter="0"
+            text="ON">
+            <s:filters>
+                <s:DropShadowFilter 
+                    color="0"
+                    distance="1"
+                    angle="-90"
+                    alpha="0.65"
+                    blurX="0"
+                    blurY="0"/>
+            </s:filters>
+        </s:Label>
+
+        <!-- layer 4: over -->
+
+        <s:Group id="overGrp"
+            x="{width-40}" width="40" height="100%">
+
+            <s:filters>
+                <s:DropShadowFilter 
+                    color="0xffffff"
+                    angle="90"
+                    alpha="0.8"
+                    distance="1"
+                    inner="true"/>
+            </s:filters>
+
+            <!-- over fill -->
+            <s:Rect 
+                width="100%"
+                left="1" right="1" top="1" bottom="1"
+                radiusX="4"
+                radiusY="4">
+                <s:fill>
+                    <s:LinearGradient rotation="-90">
+                        <s:GradientEntry color="0xfcfcfc"/>
+                        <s:GradientEntry color="0xd6d6d6"/>
+                    </s:LinearGradient>
+                </s:fill>
+            </s:Rect>
+
+            <!-- over border -->
+            <s:Rect 
+                width="100%"
+                left="0" right="0" top="0" bottom="0"
+                radiusX="4"
+                radiusY="4">
+                <s:stroke>
+                    <s:LinearGradientStroke rotation="-90"
+                        weight="1">
+                        <s:GradientEntry 
+                            color="0x999999"
+                            ratio="0"/>
+                        <s:GradientEntry 
+                            color="0x919191"
+                            ratio="1"/>
+                    </s:LinearGradientStroke>
+                </s:stroke>
+            </s:Rect>
+        </s:Group>
+
     </s:Group>
-
-    <!-- layer 3: label -->
-
-    <s:Label id="offLabel"
-        x="40"
-		width="{width-40}"
-        color="0x8b8b8b"
-        textAlign="center"
-        verticalCenter="0"
-        text="OFF"/>
-
-    <s:Label id="onLabel"
-        x="0"
-		width="{width-40}"
-        color="0xFFFFFF"
-        textAlign="center"
-        verticalCenter="0"
-        text="ON">
-        <s:filters>
-            <s:DropShadowFilter 
-                color="0"
-                distance="1"
-                angle="-90"
-                alpha="0.65"
-                blurX="0"
-                blurY="0"/>
-        </s:filters>
-    </s:Label>
-
-    <!-- layer 4: over -->
-
-    <s:Group id="overGrp"
-        width="40" height="100%">
-
-        <s:filters>
-            <s:DropShadowFilter 
-                color="0xffffff"
-                angle="90"
-                alpha="0.8"
-                distance="1"
-                inner="true"/>
-        </s:filters>
-
-        <!-- over fill -->
-        <s:Rect 
-            width="100%"
-            left="0" right="0" top="0" bottom="0"
-            radiusX="4"
-            radiusY="4">
-            <s:fill>
-                <s:LinearGradient rotation="-90">
-                    <s:GradientEntry color="0xfcfcfc"/>
-                    <s:GradientEntry color="0xd6d6d6"/>
-                </s:LinearGradient>
-            </s:fill>
-        </s:Rect>
-
-        <!-- over border -->
-        <s:Rect 
-            width="100%"
-            left="0" right="0" top="0" bottom="0"
-            radiusX="4"
-            radiusY="4">
-            <s:stroke>
-                <s:LinearGradientStroke rotation="-90"
-                    weight="1">
-                    <s:GradientEntry 
-                        color="0x999999"
-                        ratio="0"/>
-                    <s:GradientEntry 
-                        color="0x919191"
-                        ratio="1"/>
-                </s:LinearGradientStroke>
-            </s:stroke>
-        </s:Rect>
-    </s:Group>
-
 </s:SparkSkin>
