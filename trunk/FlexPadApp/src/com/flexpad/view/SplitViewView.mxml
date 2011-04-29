@@ -111,7 +111,7 @@
     </view:layout>
 
     <s:HGroup 
-        width="100%" height="500"
+        width="100%" height="450"
         gap="1">
         <s:VGroup 
             width="300" height="100%"
