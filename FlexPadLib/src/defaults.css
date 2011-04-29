@@ -32,10 +32,6 @@
 	color: #b3b3b3;
 }
 
-flexpad|BarGrey{
-	skin-class: ClassReference("com.flexpad.skin.BarGreySkin");
-}
-
 flexpad|BarGreyLabel{
 	font-family: HelveticaNeue;
 	font-weight: bold;
