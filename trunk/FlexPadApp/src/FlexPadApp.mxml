@@ -8,7 +8,7 @@
     xmlns:mx="library://ns.adobe.com/flex/mx"
     skinClass="com.flexpad.skin.AppSkin"
     xmlns:icon="com.flexpad.icon.*"
-    xmlns:flexpad="com.flexpad.*"
+    xmlns:flexpad="http://code.google.com/p/flexpad/"
     xmlns:view="com.flexpad.view.*">
     <fx:Script>
         <![CDATA[

@@ -2,8 +2,9 @@
 <view:FlexpadView xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:mx="library://ns.adobe.com/flex/mx"
-    xmlns:flexpad="com.flexpad.*"
-    xmlns:view="com.flexpad.view.*" xmlns:icon="com.flexpad.icon.*">
+    xmlns:flexpad="http://code.google.com/p/flexpad/"
+    xmlns:view="com.flexpad.view.*"
+    xmlns:icon="com.flexpad.icon.*">
 
     <view:layout>
         <s:HorizontalLayout gap="10"/>
@@ -36,14 +37,14 @@
             label="Radio button 2"
             groupName="test"/>
     </s:VGroup>
-	<s:Spacer width="20" />
-	<s:VGroup>
-		<icon:CheckEmptyIcon buttonMode="true"/>
-		<icon:CheckFilledIcon buttonMode="true"/>
-		<flexpad:ArrowButton />
-		<flexpad:AddBlueButton />
-		<flexpad:AddGreenButton />
-		<flexpad:RemoveButton />
-	</s:VGroup>
+    <s:Spacer width="20"/>
+    <s:VGroup>
+        <icon:CheckEmptyIcon buttonMode="true"/>
+        <icon:CheckFilledIcon buttonMode="true"/>
+        <flexpad:ArrowButton/>
+        <flexpad:AddBlueButton/>
+        <flexpad:AddGreenButton/>
+        <flexpad:RemoveButton/>
+    </s:VGroup>
 
 </view:FlexpadView>
