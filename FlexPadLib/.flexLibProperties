@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="com.flexpad.List"/>
+    <classEntry path="com.flexpad.skin.ListSkin"/>
+    <classEntry path="com.flexpad.ListItemRenderer"/>
+    <classEntry path="com.flexpad.ListItemRendererLabel"/>
+    <classEntry path="com.flexpad.AddBlueButton"/>
+    <classEntry path="com.flexpad.AddGreenButton"/>
+    <classEntry path="com.flexpad.ArrowButton"/>
+    <classEntry path="com.flexpad.RemoveButton"/>
+    <classEntry path="com.flexpad.Table"/>
+    <classEntry path="com.flexpad.skin.TableRowSkin"/>
+    <classEntry path="com.flexpad.SplitViewLeft"/>
+    <classEntry path="com.flexpad.skin.SplitViewLeftSkin"/>
+  </includeClasses>
   <includeResources>
     <resourceEntry destPath="HelveticaNeue Light.ttf" sourcePath="HelveticaNeue Light.ttf"/>
     <resourceEntry destPath="search.png" sourcePath="search.png"/>
@@ -8,5 +21,7 @@
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
     <resourceEntry destPath="Helvetica Bold.ttf" sourcePath="Helvetica Bold.ttf"/>
   </includeResources>
-  <namespaceManifests/>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://code.google.com/p/flexpad/"/>
+  </namespaceManifests>
 </flexLibProperties>
