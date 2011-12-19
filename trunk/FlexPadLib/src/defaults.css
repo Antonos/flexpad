@@ -147,6 +147,16 @@ flexpad|CheckBox{
 	color: #FFFFFF;
 }
 
+flexpad|ToggleSwitch
+{
+	accentColor: #3F7FBA;
+	color: #FFFFFF;
+	fontSize: 27;
+	slideDuration: 125;
+	textShadowAlpha: .65;
+	textShadowColor: #000000;
+}
+
 flexpad|RadioButton{
 	font-family: Helvetica;
 	font-weight: bold;

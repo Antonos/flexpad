@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="true" version="3">
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="com.flexpad.List"/>
     <classEntry path="com.flexpad.skin.ListSkin"/>
@@ -15,11 +15,12 @@
     <classEntry path="com.flexpad.skin.SplitViewLeftSkin"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath="HelveticaNeue Light.ttf" sourcePath="HelveticaNeue Light.ttf"/>
-    <resourceEntry destPath="search.png" sourcePath="search.png"/>
-    <resourceEntry destPath="HelveticaNeue Bold.ttf" sourcePath="HelveticaNeue Bold.ttf"/>
-    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
     <resourceEntry destPath="Helvetica Bold.ttf" sourcePath="Helvetica Bold.ttf"/>
+    <resourceEntry destPath="HelveticaNeue Bold.ttf" sourcePath="HelveticaNeue Bold.ttf"/>
+    <resourceEntry destPath="HelveticaNeue Light.ttf" sourcePath="HelveticaNeue Light.ttf"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="manifest.xml" sourcePath="manifest.xml"/>
+    <resourceEntry destPath="search.png" sourcePath="search.png"/>
   </includeResources>
   <namespaceManifests>
     <namespaceManifestEntry manifest="manifest.xml" namespace="http://code.google.com/p/flexpad/"/>

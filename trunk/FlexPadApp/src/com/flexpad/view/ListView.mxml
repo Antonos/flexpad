@@ -10,7 +10,8 @@
 
     <flexpad:List 
         backgroundAlpha="1"
-        backgroundColor="0xdfe2e7" width="300">
+        backgroundColor="0xdfe2e7" width="300"
+		height="300">
         <s:ArrayCollection>
             <fx:Object label="Label One" icon="@Embed(source='/asset/icon/sampleIcon.png')"></fx:Object>
 			<fx:Object label="Label Two" icon="@Embed(source='/asset/icon/sampleIcon.png')" hint="Two"></fx:Object>

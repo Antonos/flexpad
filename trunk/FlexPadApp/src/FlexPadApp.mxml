@@ -1,61 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application 
-    backgroundColor="#424242"
-    minHeight="100"
-    minWidth="100"
-    xmlns:fx="http://ns.adobe.com/mxml/2009"
-    xmlns:s="library://ns.adobe.com/flex/spark"
-    xmlns:mx="library://ns.adobe.com/flex/mx"
-    skinClass="com.flexpad.skin.AppSkin"
-    xmlns:icon="com.flexpad.icon.*"
-    xmlns:flexpad="http://code.google.com/p/flexpad/"
-    xmlns:view="com.flexpad.view.*">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:icon="com.flexpad.icon.*"
+			   xmlns:flexpad="http://code.google.com/p/flexpad/"
+			   xmlns:view="com.flexpad.view.*"
+			   minWidth="100" minHeight="100" backgroundColor="#424242"
+			   skinClass="com.flexpad.skin.AppSkin">
     <fx:Script>
         <![CDATA[
-            import flash.filters.DropShadowFilter;
-        ]]>
+			import com.flexpad.view.BarView;
+			import com.flexpad.view.ButtonView;
+			import com.flexpad.view.ListView;
+			import com.flexpad.view.PanelView;
+			import com.flexpad.view.PopoverView;
+			import com.flexpad.view.SplitViewView;
+			import com.flexpad.view.TableView;
+			import com.flexpad.view.TextView;
+			
+			import flash.filters.DropShadowFilter;
+			
+			import spark.events.IndexChangeEvent;
+			
+			protected function viewSwitcherChangeHandler(event:IndexChangeEvent):void
+			{
+				navigatorHolder.replaceView(viewSwitcher.dataProvider[event.newIndex].value);
+			}
+			
+		]]>
     </fx:Script>
+	<fx:Declarations>
+	</fx:Declarations>
 
     <s:layout>
         <s:VerticalLayout gap="10"/>
     </s:layout>
 
-    <flexpad:BarGrey 
-        width="100%" height="45">
+    <flexpad:BarGrey width="100%" height="45">
         <flexpad:layout>
-            <s:HorizontalLayout 
-                paddingLeft="10"
-                paddingRight="10"
-                verticalAlign="middle"/>
+            <s:HorizontalLayout paddingLeft="10" paddingRight="10" verticalAlign="middle"/>
         </flexpad:layout>
-        <flexpad:ButtonBarGrey id="viewSwitcher"
-            selectedIndex="0"
-            requireSelection="true">
+        <flexpad:ButtonBarGrey id="viewSwitcher" change="viewSwitcherChangeHandler(event)"
+							   labelField="label" requireSelection="true" selectedIndex="0">
             <flexpad:dataProvider>
                 <s:ArrayCollection>
-                    <fx:String>Button</fx:String>
-                    <fx:String>Text</fx:String>
-                    <fx:String>Bar</fx:String>
-                    <fx:String>List</fx:String>
-                    <fx:String>Panel</fx:String>
-                    <fx:String>Table</fx:String>
-                    <fx:String>Popover</fx:String>
-                    <fx:String>Splitview</fx:String>
+                    <fx:Object label="Button" value="{ButtonView}"/>
+                    <fx:Object label="Text" value="{TextView}"/>
+                    <fx:Object label="Bar" value="{BarView}"/>
+                    <fx:Object label="List" value="{ListView}"/>
+                    <fx:Object label="Panel" value="{PanelView}"/>
+                    <fx:Object label="Table" value="{TableView}"/>
+                    <fx:Object label="Popover" value="{PopoverView}"/>
+                    <fx:Object label="Splitview" value="{SplitViewView}"/>
                 </s:ArrayCollection>
             </flexpad:dataProvider>
         </flexpad:ButtonBarGrey>
     </flexpad:BarGrey>
-    <flexpad:ViewStack 
-        width="100%" height="100%"
-        selectedIndex="{viewSwitcher.selectedIndex}">
-        <view:ButtonView/>
-        <view:TextView/>
-        <view:BarView/>
-        <view:ListView/>
-        <view:PanelView/>
-        <view:TableView/>
-        <view:PopoverView/>
-        <view:SplitViewView/>
-    </flexpad:ViewStack>
+    <s:ViewNavigator id="navigatorHolder" width="100%" height="100%" firstView="com.flexpad.view.ButtonView"
+					 skinClass="com.flexpad.skin.ViewNavigatorSkin"/>
 
 </s:Application>
