@@ -9,6 +9,7 @@
 	<component id="BackButtonGrey" class="com.flexpad.BackButtonGrey" />
 	<component id="BackButtonBlack" class="com.flexpad.BackButtonBlack" />
 	<component id="Switch" class="com.flexpad.Switch" />
+	<component id="ToggleSwitch" class="com.flexpad.ToggleSwitch" />
 	<component id="CheckBox" class="com.flexpad.CheckBox" />
 	<component id="RadioButton" class="com.flexpad.RadioButton" />
 	<component id="ArrowButton" class="com.flexpad.ArrowButton" />

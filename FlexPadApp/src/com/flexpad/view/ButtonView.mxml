@@ -25,6 +25,7 @@
 
     <s:VGroup gap="10">
         <flexpad:Switch selected="true"/>
+		<flexpad:ToggleSwitch selected="true"/>
         <flexpad:CheckBox label="Checkbox"/>
     </s:VGroup>
 
